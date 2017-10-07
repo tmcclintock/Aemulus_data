@@ -1,8 +1,17 @@
-from distutils.core import setup
+from setuptools import setup,find_packages
 
-setup(name='Aemulus_data',
-      version='1.0',
-      description='Access to the Aemulus data.',
-      author='Aemulus team.',
-      py_modules=['aemulus_data'],
+dist = setup(
+    name='aemulus_data',
+    version = "0.1",
+    author = "Aemulus team.",
+    description='Access to the Aemulus data.',
+    py_modules=['aemulus_data'],
+    
+    # adding packages
+    packages=find_packages(''),
+    #package_dir = {'':''},
+    
+    # trying to add files...
+    include_package_data = True,
+    package_data = {'': ["building_box_cosmologies.txt"]}
 )

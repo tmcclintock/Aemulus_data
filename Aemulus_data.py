@@ -2,7 +2,9 @@
 This file provides simple functions to get paths to various data.
 """
 import inspect, os
-here = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) 
+#here = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+here = os.path.dirname(__file__)
+
 def path_to_mass_functions():
     """Return the path to the mass function directories.
     """
