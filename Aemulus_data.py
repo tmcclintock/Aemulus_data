@@ -5,6 +5,12 @@ import inspect, os
 here = os.path.dirname(__file__)
 
 
+def path_to_building_box_cosmologies():
+    return here+"/building_box_cosmologies.txt"
+
+def path_to_test_box_cosmologies():
+    return here+"/test_box_cosmologies.txt"
+
 def path_to_mass_functions():
     """Return the path to the mass function directories.
     """
@@ -49,6 +55,7 @@ def path_to_test_box_covariance(index, snapindex):
     """Return the path to a test box mass function covariance.
     """
     return path_to_test_box(index)+"/TestBox%03d_cov_Z%d.txt"%(index, snapindex)
+
 
 
 if __name__ == "__main__":
