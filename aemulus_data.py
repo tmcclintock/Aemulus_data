@@ -4,6 +4,9 @@ This file provides simple functions to get paths to various data.
 import inspect, os
 here = os.path.dirname(__file__)
 
+def get_scale_factors():
+    import numpy
+    return numpy.array([0.25, 0.333333, 0.5, 0.540541, 0.588235, 0.645161, 0.714286, 0.8, 0.909091, 1.0])
 
 def path_to_building_box_cosmologies():
     return here+"/building_box_cosmologies.txt"
