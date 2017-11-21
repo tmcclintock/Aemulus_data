@@ -58,6 +58,6 @@ Citation Information
 
 If you use any of these emulators in your work please cite DeRose et al. (in prep) which introduced the simulations and the associated paper for that emulator.
 
- * Mass funciton - McClintock et al. (in prep.)
+ * Mass function - McClintock et al. (in prep.)
  * Galaxy-galaxy correlation function at :math:`z=0.57` - Zhai et al. (in prep.)
  * HOD - McLaughlin et al. (in prep.)
