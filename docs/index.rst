@@ -51,6 +51,7 @@ Data files
    :maxdepth: 1
 
    Mass Functions (in progress)<data_files/mass_functions>
+   HOD Configurations (in progress)<data_files/hod_configurations>
 
 Citation Information
 ==========================
