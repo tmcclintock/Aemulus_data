@@ -1,3 +1,1 @@
-include building_box_cosmologies.txt
-include test_box_cosmologies.txt
-include mass_functions/README.md
+recursive-include aemulus_data *.txt
