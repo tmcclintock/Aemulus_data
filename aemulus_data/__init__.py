@@ -12,7 +12,7 @@ def get_scale_factors():
         array: The scale factors of the snapshots.
 
     """
-    return [0.25, 0.333333, 0.5, 0.540541, 0.588235, 0.645161, 0.714286, 0.8, 0.909091, 1.0]
+    return np.array([0.25, 0.333333, 0.5, 0.540541, 0.588235, 0.645161, 0.714286, 0.8, 0.909091, 1.0])
 
 def get_building_box_cosmologies():
     """Cosmologies for the building boxes aka the aemulus simulations.
