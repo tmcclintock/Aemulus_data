@@ -19,39 +19,42 @@ Here you will find details on how to use these various emulators and some of the
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-	     
-Simulations
-==========================
 
-We ran fourty simulations and an additional thirty five simulations for testing. In addition to the cosmological parameters we also provide certain observables from the simulations as well as directions on how to obtain full particle catalogs.
+.. _raw-simulation-data:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Raw Simulation Data
 	      
-   Cosmologies (nearly complete)<data_files/cosmologies>
-   Particles and halos (in progress)<data_files/particles_and_halos>
+   Cosmologies (nearly complete)<source/cosmologies>
+   Particles and halos (in progress)<source/particles_and_halos>
 
-Available Emulators
-==========================
-
-Full documentation for the Aemulus emulators  are found here. You can find links to those specific repositories within these pages.
+.. _available-emulators:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Available Emulators
 
    Halo Mass Function (in progress)<emulators/halo_mass_function>
    GG Correlation Function (in progress)<emulators/gg_correlation_function>
    HOD (in progress)<emulators/halo_occupation_distribution>
 
+.. _data-files:
+   
+.. toctree::
+   :maxdepth: 1
+   :caption: Data Files
+	      
+   Mass Functions (in progress)<source/mass_functions>
+   HOD Configurations (in progress)<source/hod_configurations>
 
-Data files
-==========================
+.. _reference-api:
 
 .. toctree::
    :maxdepth: 1
+   :caption: Reference/API
 
-   Mass Functions (in progress)<data_files/mass_functions>
-   HOD Configurations (in progress)<data_files/hod_configurations>
+   Aemulus_data Reference/API<api/modules>
 
 Citation Information
 ==========================
@@ -61,12 +64,3 @@ If you use any of these emulators in your work please cite DeRose et al. (in pre
  * Mass function - McClintock et al. (in prep.)
  * Galaxy-galaxy correlation function at :math:`z=0.57` - Zhai et al. (in prep.)
  * HOD - McLaughlin et al. (in prep.)
-
-******************************
-Reference/API
-******************************
-
-.. toctree::
-   :maxdepth: 1
-
-   Aemulus_data Reference/API<api/modules>
