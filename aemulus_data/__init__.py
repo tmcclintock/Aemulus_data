@@ -36,70 +36,94 @@ def get_test_box_cosmologies():
     """
     return np.loadtxt(path_to_test_box_cosmologies())
 
+def get_building_box_binned_mass_function(box, snapshot):
+    """The binned mass function for a snapshot of a box.
+
+    Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
+    To get the average mass of halos in a bin divide Total_Mass/Number.
+
+    Args:
+        box (int): Index of the simulation box; from 0-39.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x4 array of binned mass function data.
+
+    """
+    return np.loadtxt(path_to_building_box_binned_mass_function(box, snapshot))
+
+def get_building_box_binned_mass_function_covariance(box, snapshot):
+    """The covariance matrix for the binned mass function 
+    for a snapshot of a simulation box.
+
+    Units are Msun/h.
+
+    Args:
+        box (int): Index of the simulation box; from 0-39.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x10 symmetric covariance matrix.
+
+    """
+    return np.loadtxt(path_to_building_box_binned_mass_function_covariance(box, snapshot))
+
+def get_test_box_binned_mass_function(box, snapshot):
+    """The binned mass function for a snapshot of a test box.
+
+    Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
+    To get the average mass of halos in a bin divide Total_Mass/Number.
+
+    Args:
+        box (int): Index of the test box; from 0-6.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x4 array of binned mass function data.
+
+    """
+    return np.loadtxt(path_to_test_box_binned_mass_function(box, snapshot))
+
+def get_test_box_binned_mass_function_covariance(box, snapshot):
+    """The covariance matrix for the binned mass function 
+    for a snapshot of a test box.
+
+    Units are Msun/h.
+
+    Args:
+        box (int): Index of the test box; from 0-39.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x10 symmetric covariance matrix.
+
+    """
+    return np.loadtxt(path_to_test_box_binned_mass_function_covariance(box, snapshot))
+
+########################
+# Path functions below #
+########################
+
 def path_to_building_box_cosmologies():
     return here+"/building_box_cosmologies.txt"
+
+def path_to_building_box_mass_functions(box):
+    return here+"/mass_functions/building_boxes/Box%03d"%box
+
+def path_to_building_box_binned_mass_function(box, snapshot):
+    return path_to_building_box_mass_functions(box)+"/Box%03d_Z%d.txt"%(box, snapshot)
+
+def path_to_building_box_binned_mass_function_covariance(box, snapshot):
+    return path_to_building_box_mass_functions(box)+"/Box%03d_cov_Z%d.txt"%(box, snapshot)
 
 def path_to_test_box_cosmologies():
     return here+"/test_box_cosmologies.txt"
 
-def path_to_mass_functions():
-    return here+"/mass_functions"
+def path_to_test_box_mass_functions(box):
+    return here+"/mass_functions/test_boxes/averaged/TestBox%03d"%box
 
-def path_to_building_boxes():
-    """Return the path to the building box mass function directories.
-    """
-    return path_to_mass_functions()+"/building_boxes/"
+def path_to_test_box_binned_mass_function(box, snapshot):
+    return path_to_test_box_mass_functions(box)+"/TestBox%03d_mean_Z%d.txt"%(box, snapshot)
 
-def path_to_building_box(index):
-    return path_to_building_boxes()+"Box%03d"%index
-
-def path_to_building_box_data(index, snapindex):
-    return path_to_building_box(index)+"/Box%03d_Z%d.txt"%(index, snapindex)
-
-def path_to_building_box_covariance(index, snapindex):
-    """Return the path to a building box mass function covariance.
-    """
-    return path_to_building_box(index)+"/Box%03d_cov_Z%d.txt"%(index, snapindex)
-
-def path_to_test_boxes():
-    return path_to_mass_functions()+"/test_boxes/averaged/"
-
-def path_to_test_box(index):
-    return path_to_test_boxes()+"TestBox%03d"%index
-
-def path_to_test_box_data(index, snapindex):
-    return path_to_test_box(index)+"/TestBox%03d_mean_Z%d.txt"%(index, snapindex)
-
-def path_to_test_box_covariance(index, snapindex):
-    return path_to_test_box(index)+"/TestBox%03d_cov_Z%d.txt"%(index, snapindex)
-
-
-
-if __name__ == "__main__":
-
-    print get_building_box_cosmologies().shape
-    
-    index, snapindex = 0, 9
-    path = path_to_building_box_data(index, snapindex)
-    print path
-    import numpy as np
-    data = np.genfromtxt(path)
-    print data.shape
-
-    path = path_to_building_box_covariance(index, snapindex)
-    print path
-    import numpy as np
-    data = np.genfromtxt(path)
-    print data.shape
-
-    path = path_to_test_box_data(index, snapindex)
-    print path
-    import numpy as np
-    data = np.genfromtxt(path)
-    print data.shape
-
-    path = path_to_test_box_covariance(index, snapindex)
-    print path
-    import numpy as np
-    data = np.genfromtxt(path)
-    print data.shape
+def path_to_test_box_binned_mass_function_covariance(box, snapshot):
+    return path_to_test_box_mass_functions(box)+"/TestBox%03d_cov_Z%d.txt"%(box, snapshot)
