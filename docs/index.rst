@@ -26,7 +26,7 @@ Here you will find details on how to use these various emulators and some of the
    :maxdepth: 2
    :caption: Raw Simulation Data
 	      
-   Cosmologies (nearly complete)<source/cosmologies>
+   Cosmologies<source/cosmologies>
    Particles and halos (in progress)<source/particles_and_halos>
 
 .. _available-emulators:
