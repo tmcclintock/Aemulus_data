@@ -19,7 +19,7 @@ Here you will find details on how to use these various emulators and some of the
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+	     
 Simulations
 ==========================
 
@@ -61,3 +61,12 @@ If you use any of these emulators in your work please cite DeRose et al. (in pre
  * Mass function - McClintock et al. (in prep.)
  * Galaxy-galaxy correlation function at :math:`z=0.57` - Zhai et al. (in prep.)
  * HOD - McLaughlin et al. (in prep.)
+
+******************************
+Reference/API
+******************************
+
+.. toctree::
+   :maxdepth: 1
+
+   Aemulus_data Reference/API<api/modules>
