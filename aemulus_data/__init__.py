@@ -5,7 +5,7 @@ import inspect, os
 import numpy as np
 here = os.path.dirname(__file__)
 
-def get_scale_factors():
+def scale_factors():
     """Scale factors of snapshots.
 
     Returns:
@@ -14,7 +14,7 @@ def get_scale_factors():
     """
     return np.array([0.25, 0.333333, 0.5, 0.540541, 0.588235, 0.645161, 0.714286, 0.8, 0.909091, 1.0])
 
-def get_building_box_cosmologies():
+def building_box_cosmologies():
     """Cosmologies for the building boxes aka the aemulus simulations.
 
     Columns are: Omega_bh^2 Omega_ch^2 w0 ns ln10As H0[km/s/Mpc] Neff sigma8.
@@ -25,7 +25,7 @@ def get_building_box_cosmologies():
     """
     return np.loadtxt(path_to_building_box_cosmologies())
 
-def get_test_box_cosmologies():
+def test_box_cosmologies():
     """Cosmologies for the test boxes aka the aemulus simulations.
 
     Columns are: Omega_bh^2 Omega_ch^2 w0 ns ln10As H0[km/s/Mpc] Neff sigma8.
@@ -36,7 +36,7 @@ def get_test_box_cosmologies():
     """
     return np.loadtxt(path_to_test_box_cosmologies())
 
-def get_building_box_binned_mass_function(box, snapshot):
+def building_box_binned_mass_function(box, snapshot):
     """The binned mass function for a snapshot of a box.
 
     Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
@@ -52,7 +52,7 @@ def get_building_box_binned_mass_function(box, snapshot):
     """
     return np.loadtxt(path_to_building_box_binned_mass_function(box, snapshot))
 
-def get_building_box_binned_mass_function_covariance(box, snapshot):
+def building_box_binned_mass_function_covariance(box, snapshot):
     """The covariance matrix for the binned mass function 
     for a snapshot of a simulation box.
 
@@ -68,7 +68,7 @@ def get_building_box_binned_mass_function_covariance(box, snapshot):
     """
     return np.loadtxt(path_to_building_box_binned_mass_function_covariance(box, snapshot))
 
-def get_test_box_binned_mass_function(box, snapshot):
+def test_box_binned_mass_function(box, snapshot):
     """The binned mass function for a snapshot of a test box.
 
     Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
@@ -84,7 +84,7 @@ def get_test_box_binned_mass_function(box, snapshot):
     """
     return np.loadtxt(path_to_test_box_binned_mass_function(box, snapshot))
 
-def get_test_box_binned_mass_function_covariance(box, snapshot):
+def test_box_binned_mass_function_covariance(box, snapshot):
     """The covariance matrix for the binned mass function 
     for a snapshot of a test box.
 
