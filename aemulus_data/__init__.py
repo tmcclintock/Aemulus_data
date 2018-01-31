@@ -120,7 +120,7 @@ def path_to_test_box_cosmologies():
     return here+"/test_box_cosmologies.txt"
 
 def path_to_test_box_mass_functions(box):
-    return here+"/mass_functions/test_boxes/averaged/TestBox%03d"%box
+    return here+"/mass_functions/test_boxes/combined/TestBox%03d"%box
 
 def path_to_test_box_binned_mass_function(box, snapshot):
     return path_to_test_box_mass_functions(box)+"/TestBox%03d_mean_Z%d.txt"%(box, snapshot)
