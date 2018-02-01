@@ -50,7 +50,6 @@ for box in xrange(0, Ntests):
             cov_in = np.loadtxt(cov_path%(inboxname%(box,r_index),inboxname%(box,r_index),snap))
             cov += cov_in/Nreals**2
             continue
-        Nhalos /= Nreals
         inds = (Nhalos > 0)
         lMlo = lMlo[inds]
         lMhi = lMhi[inds]
@@ -59,6 +58,7 @@ for box in xrange(0, Ntests):
         cov = cov[inds]
         cov = cov[:,inds]
         Mmean /= Nhalos #Go from Mtot to Mmean
+        Nhalos /= Nreals
         out = np.array([lMlo, lMhi, Nhalos, Mmean]).T
         #Save the combined data and the combined covariance
         np.savetxt(out_data_path%(box,box,snap), out, header="M_low[Msun/h] M_high[Msun/h] Number M_total[Msun/h]")
