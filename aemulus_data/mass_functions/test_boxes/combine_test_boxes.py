@@ -57,7 +57,7 @@ for box in xrange(0, Ntests):
         Mmean = Mmean[inds]
         cov = cov[inds]
         cov = cov[:,inds]
-        Mmean /= Nhalos #Go from Mtot to Mmean
+        Mmean /= Nhalos.copy() #Go from Mtot to Mmean
         Nhalos /= Nreals
         out = np.array([lMlo, lMhi, Nhalos, Mmean]).T
         #Save the combined data and the combined covariance
