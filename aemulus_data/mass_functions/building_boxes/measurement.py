@@ -45,7 +45,9 @@ def run(box, snap):
         Nphere = Nps[inds]/N[i]
         Npave[i] = np.sum(Nphere)
         if Npave[i] > 0:
-            correction[i] = -np.exp(-(np.log10(Npave[i])+0.175)/0.704)
+            #correction[i] = -np.exp(-(np.log10(Npave[i])+0.175)/0.704)
+            #print "Npave[%d]"%i,Npave[i], correction[i]
+            correction[i] = -np.exp(-(np.log10(Npave[i])-0.25401982)/0.55696121)
             #print "Npave[%d]"%i,Npave[i], correction[i]
         else:
             correction[i] = 0
