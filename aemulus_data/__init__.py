@@ -23,7 +23,7 @@ def building_box_cosmologies():
         numpy.array: 40 by 8 array of the cosmologies for each simulation.
 
     """
-    return np.loadtxt(path_to_building_box_cosmologies())
+    return np.loadtxt(_path_to_building_box_cosmologies())
 
 def test_box_cosmologies():
     """Cosmologies for the test boxes aka the aemulus simulations.
@@ -34,7 +34,7 @@ def test_box_cosmologies():
         numpy.array: 7 by 8 array of the cosmologies for each simulation.
 
     """
-    return np.loadtxt(path_to_test_box_cosmologies())
+    return np.loadtxt(_path_to_test_box_cosmologies())
 
 def building_box_binned_mass_function(box, snapshot):
     """The binned mass function for a snapshot of a box.
@@ -50,7 +50,7 @@ def building_box_binned_mass_function(box, snapshot):
         numpy.array: 10x4 array of binned mass function data.
 
     """
-    return np.loadtxt(path_to_building_box_binned_mass_function(box, snapshot))
+    return np.loadtxt(_path_to_building_box_binned_mass_function(box, snapshot))
 
 def building_box_binned_mass_function_covariance(box, snapshot):
     """The covariance matrix for the binned mass function 
@@ -66,7 +66,7 @@ def building_box_binned_mass_function_covariance(box, snapshot):
         numpy.array: 10x10 symmetric covariance matrix.
 
     """
-    return np.loadtxt(path_to_building_box_binned_mass_function_covariance(box, snapshot))
+    return np.loadtxt(_path_to_building_box_binned_mass_function_covariance(box, snapshot))
 
 def test_box_binned_mass_function(box, snapshot):
     """The binned mass function for a snapshot of a test box.
@@ -82,7 +82,7 @@ def test_box_binned_mass_function(box, snapshot):
         numpy.array: 10x4 array of binned mass function data.
 
     """
-    return np.loadtxt(path_to_test_box_binned_mass_function(box, snapshot))
+    return np.loadtxt(_path_to_test_box_binned_mass_function(box, snapshot))
 
 def test_box_binned_mass_function_covariance(box, snapshot):
     """The covariance matrix for the binned mass function 
@@ -98,32 +98,32 @@ def test_box_binned_mass_function_covariance(box, snapshot):
         numpy.array: 10x10 symmetric covariance matrix.
 
     """
-    return np.loadtxt(path_to_test_box_binned_mass_function_covariance(box, snapshot))
+    return np.loadtxt(_path_to_test_box_binned_mass_function_covariance(box, snapshot))
 
 ########################
 # Path functions below #
 ########################
 
-def path_to_building_box_cosmologies():
+def _path_to_building_box_cosmologies():
     return here+"/building_box_cosmologies.txt"
 
-def path_to_building_box_mass_functions(box):
+def _path_to_building_box_mass_functions(box):
     return here+"/mass_functions/building_boxes/Box%03d"%box
 
-def path_to_building_box_binned_mass_function(box, snapshot):
-    return path_to_building_box_mass_functions(box)+"/Box%03d_Z%d.txt"%(box, snapshot)
+def _path_to_building_box_binned_mass_function(box, snapshot):
+    return _path_to_building_box_mass_functions(box)+"/Box%03d_Z%d.txt"%(box, snapshot)
 
-def path_to_building_box_binned_mass_function_covariance(box, snapshot):
-    return path_to_building_box_mass_functions(box)+"/Box%03d_cov_Z%d.txt"%(box, snapshot)
+def _path_to_building_box_binned_mass_function_covariance(box, snapshot):
+    return _path_to_building_box_mass_functions(box)+"/Box%03d_Z%d_cov.txt"%(box, snapshot)
 
-def path_to_test_box_cosmologies():
+def _path_to_test_box_cosmologies():
     return here+"/test_box_cosmologies.txt"
 
-def path_to_test_box_mass_functions(box):
+def _path_to_test_box_mass_functions(box):
     return here+"/mass_functions/test_boxes/combined/TestBox%03d"%box
 
-def path_to_test_box_binned_mass_function(box, snapshot):
-    return path_to_test_box_mass_functions(box)+"/TestBox%03d_mean_Z%d.txt"%(box, snapshot)
+def _path_to_test_box_binned_mass_function(box, snapshot):
+    return _path_to_test_box_mass_functions(box)+"/TestBox%03d_mean_Z%d.txt"%(box, snapshot)
 
-def path_to_test_box_binned_mass_function_covariance(box, snapshot):
-    return path_to_test_box_mass_functions(box)+"/TestBox%03d_cov_Z%d.txt"%(box, snapshot)
+def _path_to_test_box_binned_mass_function_covariance(box, snapshot):
+    return _path_to_test_box_mass_functions(box)+"/TestBox%03d_cov_Z%d.txt"%(box, snapshot)
