@@ -4,7 +4,7 @@ import pandas as pd
 
 inbase = "/nfs/slac/g/ki/ki22/cosmo/tmcclint/NM_Z_data/reduced_mf_data/Box%03d_reduced/Box%03d_reduced_Z%d.list"
 
-outbase = "/nfs/slac/g/ki/ki22/cosmo/tmcclint/NEWMF/Box%03d_MF/"
+outbase = "/nfs/slac/g/ki/ki22/cosmo/tmcclint/CORRECTMF/Box%03d_MF/"
 
 sfs = np.array([0.25, 0.333333, 0.5, 0.540541, 0.588235, 0.645161, 0.714286, 0.8, 0.909091, 1.0])
 
@@ -16,6 +16,7 @@ def run(box, snap):
         data = np.copy(data, order='C')
         M = data[:,2]
         x, y, z = data[:, 8:11].T
+        Nps = data[:,7] #Number of particles
     except ValueError:
         print "Exiting with value error."
         return
@@ -31,15 +32,23 @@ def run(box, snap):
     edges = edgesall[1:]
     #edges = np.linspace(np.min(lM)-0.0001, lMmax, Nbins+1)[1:] #only right edges
     lMi = np.digitize(lM, edges, True)
-    print 
     N = np.bincount(lMi, minlength=Nbins)
     Mave = np.zeros_like(N)
+    Npave = np.zeros_like(N)
+    correction = np.zeros_like(N, dtype='float64')
     for i in range(len(Mave)):
         inds = (lMi==i)
         Mi = M[inds]
         print len(Mi), N[i]
         Mhere = Mi/N[i]
         Mave[i] = np.sum(Mhere)
+        Nphere = Nps[inds]/N[i]
+        Npave[i] = np.sum(Nphere)
+        if Npave[i] > 0:
+            correction[i] = -np.exp(-(np.log10(Npave[i])+0.175)/0.704)
+            #print "Npave[%d]"%i,Npave[i], correction[i]
+        else:
+            correction[i] = 0
 
     print "N truth:", N
     print "total number ", N.sum()
@@ -82,6 +91,13 @@ def run(box, snap):
     lMbins = (edges[1:] + edges[:-1])/2.
     out = np.zeros((Nbins, 4 ))
 
+    #APPLY THE CORRECTION
+    N = N.astype('float64')
+    for i in range(Nbins):
+        N[i] = N[i]/(1+correction[i])
+        for j in range(Nbins):
+            C[i,j]  = C[i,j]/((1+correction[i])*(1+correction[j]))
+
     for i in range(Nbins):
         out[i, 0] = edgesall[i]
         out[i, 1] = edgesall[i+1]
@@ -92,8 +108,8 @@ def run(box, snap):
     C = C[good]
     C = C[:,good]
     lMa = np.log10(Mave[good])
-    print np.log10(Mave[good])
-    print (lMa>out[:,0]), (lMa < out[:,1])
+    print "Mean masses:",np.log10(Mave[good])
+    print "Kept indices:",(lMa>out[:,0]), (lMa < out[:,1])
 
     np.savetxt(outbase%box+"/Box%03d_Z%d.txt"%(box, snap), out, header = "logM_lo logM_hi N Mave")
     np.savetxt(outbase%box+"/Box%03d_Z%d_cov.txt"%(box, snap), C)
