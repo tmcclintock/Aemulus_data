@@ -100,6 +100,49 @@ def test_box_binned_mass_function_covariance(box, snapshot):
     """
     return np.loadtxt(_path_to_test_box_binned_mass_function_covariance(box, snapshot))
 
+def individual_test_box_binned_mass_function(box, snapshot, realization):
+    """The binned mass function for a snapshot of a test box.
+
+    Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
+    To get the average mass of halos in a bin divide Total_Mass/Number.
+
+    Args:
+        box (int): Index of the test box; from 0-6.
+        snapshot (int): Index of the snapshot; from 0-9.
+        realization (int): Index of the realization; from 0-4.
+
+    Returns:
+        numpy.array: 10x4 array of binned mass function data.
+
+    """
+    data = np.loadtxt(_path_to_individual_test_box_binned_mass_function(box, snapshot, realization))
+    Mtot = data[:,-1]
+    inds = (Mtot > 0)
+    data = data[inds]
+    data[:,-1] /= data[:,-2] #Convert Mtot to Mmean
+    return data
+
+def individual_test_box_binned_mass_function_covariance(box, snapshot, realization):
+    """The covariance matrix for the binned mass function 
+    for a snapshot of a test box.
+
+    Units are Msun/h.
+
+    Args:
+        box (int): Index of the test box; from 0-39.
+        snapshot (int): Index of the snapshot; from 0-9.
+        realization (int): Index of the realization; from 0-4.
+
+    Returns:
+        numpy.array: 10x10 symmetric covariance matrix.
+
+    """
+    cov = np.loadtxt(_path_to_individual_test_box_binned_mass_function_covariance(box, snapshot, realization))
+    inds = (np.fabs(cov[0]) > 0)
+    cov = cov[inds]
+    cov = cov[:,inds]
+    return cov
+
 ########################
 # Path functions below #
 ########################
@@ -127,3 +170,12 @@ def _path_to_test_box_binned_mass_function(box, snapshot):
 
 def _path_to_test_box_binned_mass_function_covariance(box, snapshot):
     return _path_to_test_box_mass_functions(box)+"/TestBox%03d_cov_Z%d.txt"%(box, snapshot)
+
+def _path_to_individual_test_box_mass_functions(box, realization):
+    return here+"/mass_functions/test_boxes/full_mf_data/TestBox%03d-%03d_full"%(box,realization)
+
+def _path_to_individual_test_box_binned_mass_function(box, snapshot, realization):
+    return _path_to_individual_test_box_mass_functions(box, realization)+"/TestBox%03d-%03d_full_Z%d.txt"%(box, realization, snapshot)
+
+def _path_to_individual_test_box_binned_mass_function_covariance(box, snapshot, realization):
+    return here+"/mass_functions/test_boxes/covariances/TestBox%03d-%03d_cov/TestBox%03d-%03d_cov_Z%d.txt"%(box, realization, box, realization, snapshot)
