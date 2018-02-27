@@ -143,6 +143,40 @@ def individual_test_box_binned_mass_function_covariance(box, snapshot, realizati
     cov = cov[:,inds]
     return cov
 
+def big_box_binned_mass_function(box, snapshot):
+    """The binned mass function for a snapshot of a big box.
+
+    Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
+    To get the average mass of halos in a bin divide Total_Mass/Number.
+
+    Args:
+        box (int): Index of the big box; from 0-6.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x4 array of binned mass function data.
+
+    """
+    return np.loadtxt(_path_to_big_box_binned_mass_function(box, snapshot))
+
+
+def big_box_binned_mass_function_covariance(box, snapshot):
+    """The covariance matrix for the binned mass function 
+    for a snapshot of a big box.
+
+    Units are Msun/h.
+
+    Args:
+        box (int): Index of the big box; from 0-39.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x10 symmetric covariance matrix.
+
+    """
+    return np.loadtxt(_path_to_big_box_binned_mass_function_covariance(box, snapshot))
+
+
 ########################
 # Path functions below #
 ########################
@@ -179,3 +213,13 @@ def _path_to_individual_test_box_binned_mass_function(box, snapshot, realization
 
 def _path_to_individual_test_box_binned_mass_function_covariance(box, snapshot, realization):
     return here+"/mass_functions/test_boxes/TestBox%03d-%03d/TestBox%03d-%03d_Z%d_cov.txt"%(box, realization, box, realization, snapshot)
+
+def _path_to_big_box_binned_mass_function(box, snapshot):
+    return _path_to_big_box_mass_functions(box)+"Bigbox_mf_%03d-000_Z%d.txt"%(box, snapshot)
+
+def _path_to_big_box_binned_mass_function_covariance(box, snapshot):
+    return _path_to_big_box_mass_functions(box)+"Bigbox_mf_%03d-000_Z%d_cov.txt"%(box, snapshot)
+
+def _path_to_big_box_mass_functions(box):
+    return here+"/mass_functions/big_boxes/"
+
