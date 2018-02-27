@@ -166,16 +166,16 @@ def _path_to_test_box_mass_functions(box):
     return here+"/mass_functions/test_boxes/combined/TestBox%03d"%box
 
 def _path_to_test_box_binned_mass_function(box, snapshot):
-    return _path_to_test_box_mass_functions(box)+"/TestBox%03d_mean_Z%d.txt"%(box, snapshot)
+    return _path_to_test_box_mass_functions(box)+"/TestBox%03d_Z%d.txt"%(box, snapshot)
 
 def _path_to_test_box_binned_mass_function_covariance(box, snapshot):
-    return _path_to_test_box_mass_functions(box)+"/TestBox%03d_cov_Z%d.txt"%(box, snapshot)
+    return _path_to_test_box_mass_functions(box)+"/TestBox%03d_Z%d_cov.txt"%(box, snapshot)
 
 def _path_to_individual_test_box_mass_functions(box, realization):
-    return here+"/mass_functions/test_boxes/full_mf_data/TestBox%03d-%03d_full"%(box,realization)
+    return here+"/mass_functions/test_boxes/TestBox%03d-%03d"%(box,realization)
 
 def _path_to_individual_test_box_binned_mass_function(box, snapshot, realization):
-    return _path_to_individual_test_box_mass_functions(box, realization)+"/TestBox%03d-%03d_full_Z%d.txt"%(box, realization, snapshot)
+    return _path_to_individual_test_box_mass_functions(box, realization)+"/TestBox%03d-%03d_Z%d.txt"%(box, realization, snapshot)
 
 def _path_to_individual_test_box_binned_mass_function_covariance(box, snapshot, realization):
-    return here+"/mass_functions/test_boxes/covariances/TestBox%03d-%03d_cov/TestBox%03d-%03d_cov_Z%d.txt"%(box, realization, box, realization, snapshot)
+    return here+"/mass_functions/test_boxes/TestBox%03d-%03d/TestBox%03d-%03d_Z%d_cov.txt"%(box, realization, box, realization, snapshot)
