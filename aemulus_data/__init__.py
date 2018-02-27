@@ -176,6 +176,39 @@ def big_box_binned_mass_function_covariance(box, snapshot):
     """
     return np.loadtxt(_path_to_big_box_binned_mass_function_covariance(box, snapshot))
 
+def medium_box_binned_mass_function(box, snapshot):
+    """The binned mass function for a snapshot of a medium box.
+
+    Units are Msun/h. Columns are M_low, M_high, Number, Total_Mass. 
+    To get the average mass of halos in a bin divide Total_Mass/Number.
+
+    Args:
+        box (int): Index of the medium box; from 0-6.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x4 array of binned mass function data.
+
+    """
+    return np.loadtxt(_path_to_medium_box_binned_mass_function(box, snapshot))
+
+
+def medium_box_binned_mass_function_covariance(box, snapshot):
+    """The covariance matrix for the binned mass function 
+    for a snapshot of a medium box.
+
+    Units are Msun/h.
+
+    Args:
+        box (int): Index of the medium box; from 0-39.
+        snapshot (int): Index of the snapshot; from 0-9.
+
+    Returns:
+        numpy.array: 10x10 symmetric covariance matrix.
+
+    """
+    return np.loadtxt(_path_to_medium_box_binned_mass_function_covariance(box, snapshot))
+
 
 ########################
 # Path functions below #
@@ -222,4 +255,13 @@ def _path_to_big_box_binned_mass_function_covariance(box, snapshot):
 
 def _path_to_big_box_mass_functions(box):
     return here+"/mass_functions/big_boxes/"
+
+def _path_to_medium_box_binned_mass_function(box, snapshot):
+    return _path_to_medium_box_mass_functions(box)+"Medbox_mf_%03d-000_Z%d.txt"%(box, snapshot)
+
+def _path_to_medium_box_binned_mass_function_covariance(box, snapshot):
+    return _path_to_medium_box_mass_functions(box)+"Medbox_mf_%03d-000_Z%d_cov.txt"%(box, snapshot)
+
+def _path_to_medium_box_mass_functions(box):
+    return here+"/mass_functions/medium_boxes/"
 
