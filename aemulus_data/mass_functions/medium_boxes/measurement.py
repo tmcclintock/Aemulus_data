@@ -26,7 +26,7 @@ def run(box, real, snap):
         return
     os.system("mkdir -p %s"%(outbase))
 
-    SIDE_LENGTH = 6000. #Mpc/h side of the whole simulation
+    SIDE_LENGTH = 3000. #Mpc/h side of the whole simulation
 
     lM = np.log10(M)
     lMmax = 16.
@@ -113,6 +113,7 @@ def run(box, real, snap):
     out = out[good]
     C = C[good]
     C = C[:,good]
+    print np.sqrt(C.diagonal())/out[:,2]
     lMa = np.log10(Mave[good])
     print "Mean masses:",np.log10(Mave[good])
     print "Kept indices:",(lMa>out[:,0]), (lMa < out[:,1])
